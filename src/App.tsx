@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaWindows, FaTerminal, FaBitcoin } from 'react-icons/fa'
 import { SiPython, SiLinux, SiDocker, SiAnsible } from 'react-icons/si'
@@ -258,7 +258,7 @@ function App() {
                 <p className="text-gray-400 mb-4">{isEnglish ? 'June 2023 - August 2023' : 'Juin 2023 - Août 2023'}</p>
 
                 <ul className="list-disc list-inside text-gray-300 space-y-2">
-                  <li>{isEnglish ? 'Implementation of a backup system and business continuity plan' : 'Mise en production d’un système de sauvegarde et plan de reprise d’activité'}</li>
+                  <li>{isEnglish ? 'Implementation of a backup system and business continuity plan' : "Mise en production d'un système de sauvegarde et plan de reprise d'activité"}</li>
                   <li>{isEnglish ? 'Responsible for the technical architecture' : 'Responsable de l\'architecture technique'}</li>
                   <li>{isEnglish ? 'Installation of applications in the cloud' : 'Installation d\'applications dans le cloud'}</li>
                 </ul>
@@ -412,7 +412,7 @@ function App() {
               </h2>
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-gray-300 mb-2">{isEnglish ? 'Name' : 'Nom'}</label>
+                  <label className="block text-gray-300 mb-2">Nom</label>
                   <input
                     type="text"
                     name="name"
@@ -429,6 +429,7 @@ function App() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
+                    required
                     className="w-full bg-gray-700/50 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500"
                   />
                 </div>
@@ -438,15 +439,19 @@ function App() {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
+                    required
                     className="w-full bg-gray-700/50 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 h-32"
                   ></textarea>
                 </div>
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 border-2 border-transparent bg-clip-padding p-[2px] bg-gradient-to-r from-purple-600 to-blue-600"
-                >
-                  {isEnglish ? 'Send' : 'Envoyer'}
-                </button>
+                <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-[2px] rounded-lg">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`bg-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 w-full ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  >
+                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+                  </button>
+                </div>
               </form>
               <div className="mt-8 flex justify-center space-x-6">
                 <a href="https://www.linkedin.com/in/floiratmatteo/" className="text-gray-300 hover:text-blue-400 transition-colors text-2xl">
